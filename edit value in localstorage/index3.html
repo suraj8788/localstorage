@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+    <h1>user can update value</h1>
+    <label for="">frist name:</label>
+    <input type="text" name="" id="firstName">
+    <br><br>
+    <label for="">last name:</label>
+    <input type="text" name="" id="lastName">
+    <br><br>
+    <label for="">Age:</label>
+    <input type="text" name="" id="age">
+    <br><br>
+    <label for="">Number:</label>
+    <input type="tel" name="" id="number" pattern="[0-9]{5}[0-9]{5}" maxlength="10" minlength="10" placeholder="1111111111">
+    <br><br>
+    <input type="submit" value="update" onclick="updateValue()">
+    </center>
+    <script>
+        function updateValue() {
+            let firstName = document.getElementById('firstName').value;
+            let lastName = document.getElementById('lastName').value;
+            let age = document.getElementById('age').value; 
+            let Number = document.getElementById('number').value;
+            // console.log(localStorage.getItem('first'));
+            let data = JSON.parse(localStorage.getItem('first'));
+            data.forEach((val, index) => {
+                if (val.email === localStorage.getItem('loggedInUser')) {
+                    const tempObj = val;
+                    if (firstName) {
+                        tempObj['frist name'] = firstName;
+                    }
+                    if (lastName) {
+                        tempObj['last name'] = lastName;
+                    }
+                    if (age) {
+                        tempObj['age'] = age;
+                    }
+                    if (Number) {
+                        tempObj['number'] = Number;
+                    }
+                    data.splice(index, 1);
+                    data.push(tempObj);
+                }
+            });
+            localStorage.setItem('first', JSON.stringify(data));
+            document.getElementById('firstName').value = '';
+            document.getElementById('lastName').value = '';
+            document.getElementById('age').value = '';
+            document.getElementById('number').value='';
+        }
+    </script>
+</body>
+</html>

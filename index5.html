@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./index3.html">
+</head>
+
+<body>
+    <form action="/index6.html">
+        <label for="">email:</label>
+        <input type="email" name="" id="email1" onblur="validation('email1')">
+        <br><br>
+        <label for="">password:</label>
+        <input type="password" name="" id="password1" onblur="validation('password1')">
+        <br><br>
+        <input type="submit" value="submit" onclick="validation1()">
+        <br>
+        <p>don't have an account <a href="./index3.html">sing up</a></p>
+    </form>
+    <script>
+        function validation(str) {
+            let inputId1 = document.getElementById(str).value;
+            if (str == 'email1' && !inputId1) {
+                alert('missing');
+            } else if (str == 'password1' && !inputId1) {
+                alert('last missing');
+            }
+        }
+        function validation1() {
+            let email = document.getElementById("email1").value;
+            let password = document.getElementById("password1").value;
+            // console.log(email, password);
+            let auth = JSON.parse(localStorage.getItem("first"));
+            // console.log(auth);
+            let isExit = false
+            for (let i = 0; i < auth.length; i++) {
+                if (email == auth[i].email && password == auth[i].password) {
+                    isExit=true
+                    break
+            } else {
+            isExit = false
+            } 
+            }
+            console.log(isExit);
+            if (isExit == true) {
+                alert("login succesfully");
+                window.location.replace("http://127.0.0.1:5500/index6.html");//redirect a browser using action
+            } else {
+                alert("login unsuccesfully");
+            }
+        }
+    </script>
+</body>
+
+</html>

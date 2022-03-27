@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form >
+        <label for="">frist name:</label>
+        <input type="text" name="" id="fname" onblur="myfun1('fname')">
+        <br><br>
+        <label for="">last name:</label>
+        <input type="text" name="" id="lname" onblur="myfun1('lname')">
+        <br><br>
+        <label for="">password</label>
+        <input type="password" name="" id="password" onblur="myfun1('password')">
+        <br><br>
+        <label for="">email:</label>
+        <input type="email" name="" id="email" onblur="myfun1('email')">
+        <br><br>
+        <label for="">Age:</label>
+        <input type="number" name="" id="Age" onblur="myfun1('Age')">
+        <br><br>
+        <input type="submit" value="submit" onclick="myfun()">
+        </form>
+    <script>
+         function myfun1(str) {
+            let inputId = document.getElementById(str).value;
+            if (str == 'fname' && !inputId) {
+                alert('missing');
+            } else if (str == 'lname' && !inputId) {
+                alert('last missing');
+            } else if (str == 'email' && !inputId) {
+                alert('email is missing');
+            } 
+            else if(str == 'password' && !inputId){
+                alert('password is missing');
+            }
+            // else if(str == 'Cpassword' && !inputId){
+            //     alert('password is missing');
+            // }
+            else if(str == 'Age' && !inputId){
+                alert('age is missing');
+            }
+            // else if(str == 'cname' && !inputId){
+            //     alert('country name is missing');
+            // }
+        }
+        function myfun( ) {
+            let localvalues=[];
+            let a= document.getElementById("fname").value;
+            let b=document.getElementById("lname").value;
+            let c=document.getElementById("password").value;
+            let d=document.getElementById("email").value;
+            let e=document.getElementById("Age").value;
+            let objjson={
+                  "frist name":a,
+                  "last name":b,
+                  "password":c,
+                  "email":d,
+                  "age":e,
+            };
+            let dataArr = JSON.parse(localStorage.getItem('first'));
+            if (dataArr) {
+                dataArr.push(objjson);
+                localStorage.setItem('first', JSON.stringify(dataArr));
+            } else {
+                localvalues.push(objjson);
+                localStorage.setItem('first',JSON.stringify(localvalues));
+            }
+        }
+    </script>
+</body>
+</html>
